@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+<div class="">
+    {% comment %} User Authentication  {% endcomment %}
+   
+    <div class="flex flex-row bg-gray-700 mx-auto ">
+       <div class="basis-3/6 ">
+        <h2 class="text-lg text-white"> Welcome {{request.user|title}} </h2>
+        <p class="text-sm"></p>
+       </div>
+       <div class="basis-3/6 items-end">
+        {% if request.user.is_authenticated %}
+        <a class="text-gray-100" href="{% url 'logout' %}">Logout</a> {% else %}
+        <a class="text-gray-100" href="{% url 'login' %}">Login</a> {% endif %}
+       </div>
+    </div>
+<div class="grid place-items-center w-2/4 md:w-4/5 mx-auto bg-gray-600 pt-5">
+    <h1 class="text-4xl text-white text-center">MY TODO APP </h1>
+    
+<a  href="{% url 'todocreate' %}" class="bg-green-500 hover:bg-green-700 text-white my-5 py-2 px-4 rounded">
+    Add Task
+</a>
+</div>
+<div>
+<div class="w-1/2 mx-auto py-5">
+<table class="w-full border-separate border-spacing-2 border border-sky-400">
+    
+    <tr class="border border-slate-300">
+        <th class="text-start text-sky-500">Task</th>
+        <th class="text-start text-sky-500">Status</th>
+        <th class="text-start text-sky-500">Action</th>
+    </tr>
+    {% for todo in todos %}
+        <tr>
+        <td class="text-start" ><p>{{todo.title}}</p>
+        </td>
+        <td>
+            {% if todo.complete == True %}
+                 <p class="">Done<i class="ri-check-line text-green-600"></i></p>
+            {% else %}
+                <p class="">Incomplete<i class="ri-close-line text-red-600"></i></p>
+            {% endif %}
+        <td>
+            <a href="{% url 'todoupdate' todo.id %}" ><i class="ri-edit-box-line text-green-600"></i></a>
+            <a href="{% url 'tododelete' todo.id %}"><i class="ri-delete-bin-6-line text-red-600"> </i></a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+    <td class="py-3" colspan="3">
+        <p class="text-2xl  text-center text-green-500">All done, time for coffee <i class="ri-cup-line text-rose-700"></i> </p>
+     </td>
+    </tr>
+    {% endfor %}
+<table>
+</div>
+{% endblock content  %}
+

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w-1/2 mx-auto py-6">
+    <div>
+    <h1 class="text-2xl text-sky-500"> Welcome </h1>
+    <p>Register to create task list</p>
+     <div>
+
+        <div class="my-4">
+        <form method="POST" class="py-3 space-y-2.5">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="button bg-green-500 hover:bg-green-700 px-4 py-2 text-white rounded" type="submit" value="Register">
+        </form>
+
+        <p class="">Existing User? <a class="pl-2 text-sky-500" href="{% url 'login' %}">Login Now</a></p>
+        </div>
+
+</div>
+
+{% endblock content %}

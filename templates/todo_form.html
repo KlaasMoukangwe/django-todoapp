@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="w-1/2 mx-auto">
+<h1 class="text-4xl text-sky-600 mb-5"> ADD NEW TASK</h1>
+
+<form method ="post" action="" class="w-3/4 text-lg text-sky-800">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add Task" class="my-5 bg-green-500 hover:bg-green-700 text-white  py-2 px-4 rounded">
+</form>
+</div>
+{% endblock  %}

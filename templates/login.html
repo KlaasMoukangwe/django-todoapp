@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w-1/2 mx-auto py-6">
+    <div>
+    <h1 class="text-2xl text-sky-500"> Welcome Back</h1>
+    <p>Please login to access your tasks</p>
+     <div>
+
+        <div class="my-4">
+        <form method="POST" class="py-3 space-y-2.5">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="button bg-green-500 hover:bg-green-700 px-4 py-2 text-white rounded" type="submit" value="Login">
+        </form>
+        <p class="">New User? <a class="pl-2 text-sky-500" href="{% url 'register' %}">Create Account</a></p>
+        </div>
+
+</div>
+{% endblock content %}
